@@ -1,0 +1,22 @@
+.container
+    .row.my-3
+        .col-md-12
+            .card
+                .card-header
+                    %h4.text-center Ürün Düzenle
+                .card-body
+                    = form_for @product, url: product_path(@product), method: :patch do |f|
+                        .mb-3
+                            = f.label :name, "Ürün Adı"
+                            = f.text_field :name, class: "form-control"
+                        .mb-3
+                            = f.label :description, "Ürün Açıklaması"
+                            = f.text_area :description, placeholder: "Ürün ile ilgili açıklama ekleyin...", rows: "7", class: "form-control"
+                        .price-and-stock-area.mb-3.d-flex
+                            .col-md-6.pe-2
+                                = f.label :price, "Fiyat"
+                                = f.number_field :price, class: "form-control"
+                            .col-md-6
+                                = f.label :stock, "Stok"
+                                = f.number_field :stock, class: "form-control"
+                        = f.submit "Kaydet", class: "btn btn-primary float-end"

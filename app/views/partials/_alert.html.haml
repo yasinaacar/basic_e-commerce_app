@@ -1,0 +1,10 @@
+- flash.each do |key, value|
+    - if key == "notice"
+        .alert.alert-success 
+            =value
+    -elsif key == "error"
+        .alert.alert-danger 
+            =value 
+    -else 
+        .alert{class: "alert-#{key}"}
+            =value       

@@ -1,0 +1,12 @@
+.container
+    .row.my-3
+        .col-md-12
+            .card
+                .card-header
+                    %h4.text-center Kategori Düzenle
+                .card-body
+                    = form_for @category, url: category_path(@category), method: :patch do |f|
+                        .mb-3
+                            = f.label :name, "Kategori Adı"
+                            = f.text_field :name, class: "form-control"
+                        = f.submit "Kaydet", class: "btn btn-primary float-end"

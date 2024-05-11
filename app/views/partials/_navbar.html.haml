@@ -1,0 +1,38 @@
+%nav.navbar.navbar-expand-lg.bg-light
+    .container-fluid
+        %a.navbar-brand{:href => "/"} E-Commerce
+        %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+            %span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+            %ul.navbar-nav
+                %li.nav-item
+                    %a.nav-link.active{"aria-current" => "page", :href => "/"} Ana Sayfa
+                %li.nav-item
+                    %a.nav-link{:href => "/products"} Ürünler
+                %li.nav-item.dropdown
+                    %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                        Kategoriler
+                    %ul.dropdown-menu
+                        - if @categories.present?
+                            - @categories.each do |category|
+                                %li
+                                    %a.dropdown-item{:href => "/categories/#{category.id}"}= category.name
+                        - else 
+                            Kategori bulunamadı
+                %li.nav-item.dropdown
+                    %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                        Ürün İşlemleri 
+                    %ul.dropdown-menu
+                        %li
+                            %a.dropdown-item{:href => "/products"} Ürünler   
+                        %li
+                            %a.dropdown-item{:href => "/products/new"} Ürün Ekle   
+                %li.nav-item.dropdown
+                    %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+                        Kategori İşlemleri 
+                    %ul.dropdown-menu
+                        %li
+                            %a.dropdown-item{:href => "/categories"} Kategoriler   
+                        %li
+                            %a.dropdown-item{:href => "/categories/new"} Kategori Ekle  
+            

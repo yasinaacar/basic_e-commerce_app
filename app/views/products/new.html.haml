@@ -1,0 +1,28 @@
+.container
+    .row.my-3 
+        .col-md-12 
+            .card 
+                .card-header 
+                    %h4.text-center Yeni Ürün Ekle
+                .card-body 
+                    %form{method:"post", action: products_path}
+                        .mb-3
+                            %label.form-label{:for => "product_name"} Ürün Adı
+                            %input#product_name.form-control{:type => "text", :name => "product[name]"}
+                            - @product.errors.full_messages_for(:name).each do |message|
+                                -message_without_name = message.gsub(/Name/i, '')
+                                %p.text-danger= message_without_name
+                        .mb-3
+                            %label.form-label{:for => "description"} Ürün Açıklaması
+                            %textarea#description.form-control{:placeholder => "Ürün ile ilgili açıklama ekleyin...", :name => "product[description]", :rows => "7"}
+                        .price-and-stock-area.mb-3.d-flex 
+                            .col-md-6.pe-2 
+                                %label.form-label{:for => "price"} Fiyat
+                                %input#price.form-control{:type => "number", :name => "product[price]"}
+                                - @product.errors.full_messages_for(:price).each do |message|
+            
+                                    %p.text-danger= message
+                            .col-md-6 
+                                %label.form-label{:for => "stock"} Stok
+                                %input#stock.form-control{:type => "number", :name => "product[stock]"}
+                        %button.btn.btn-primary.float-end{:type => "submit"} Kaydet  

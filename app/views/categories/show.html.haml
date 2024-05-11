@@ -1,0 +1,8 @@
+.container 
+    .row 
+        .col-md-12 
+            .card.my-3.p-5
+                %h3.text-center.my-2= @category.name
+                .btns.d-flex.justify-content-end 
+                    %a.btn.btn-sm.btn-outline-primary.mx-2{:href=>"/categories/#{@category.id}/edit"}  Düzenle
+                    = link_to "Sil", category_path(@category), method: :delete, class: "btn btn-sm btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "#{@category.name} adlı kategoriyi silmek istediğinize emin misiniz?" }

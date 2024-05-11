@@ -1,0 +1,11 @@
+.container 
+    .row 
+        .col-md-12 
+            .card.my-3.p-5
+                %h3.text-center.my-2= @product.name
+                %p= @product.description
+                %p= @product.price
+                %p= "#{@product.stock} adet kaldı"
+                .btns.d-flex.justify-content-end 
+                    %a.btn.btn-sm.btn-outline-primary.mx-2{:href=>"/products/#{@product.id}/edit"}  Düzenle
+                    = link_to "Sil", product_path(@product), method: :delete, class: "btn btn-sm btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "#{@product.name} adlı ürünü silmek istediğinize emin misiniz?" }

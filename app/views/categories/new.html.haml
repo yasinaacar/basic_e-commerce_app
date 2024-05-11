@@ -1,0 +1,15 @@
+.container
+    .row.my-3 
+        .col-md-12 
+            .card 
+                .card-header 
+                    %h4.text-center Yeni Kategori Ekle
+                .card-body 
+                    %form{method:"post", action: categories_path}
+                        .mb-3
+                            %label.form-label{:for => "category_name"} Ürün Adı
+                            %input#category_name.form-control{:type => "text", :name => "category[name]"}
+                            - @category.errors.full_messages_for(:name).each do |message|
+                                -message_without_name = message.gsub(/Name/i, '')
+                                %p.text-danger= message_without_name
+                        %button.btn.btn-primary.float-end{:type => "submit"} Kaydet  

@@ -1,0 +1,12 @@
+%h1.text-center.border-bottom.pb-3 Ürünler
+.container 
+    .row
+        - @products.each do |product|
+            .col-md-4 
+                .card
+                    .card-body
+                        %h5.card-title.text-center.my-2= product.name
+                        %p.card-text.my-2= product.description
+                        %b.card-text.float-end= "#{product.price} ₺"
+                        %a{:href=>"/products/#{product.id}"} İncele 
+            
