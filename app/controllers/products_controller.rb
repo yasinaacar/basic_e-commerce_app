@@ -1,13 +1,20 @@
 class ProductsController < ApplicationController
+
+  before_action :set_product, only: %i[show edit update destroy]
+  #after_action methodu da yazabilirsin
+
   def index
     @products=Product.all
   end
+
   def show
-    @product=Product.find(params[:id])
+    #before action ile veri alınıyor -- çalışma mantığı için before_action metoduna bak
   end
+
   def new
     @product=Product.new
   end
+
   def create
     @product=Product.new(product_params)
 
@@ -19,27 +26,30 @@ class ProductsController < ApplicationController
 
     end
   end
-  def edit
-    @product=Product.find(params[:id])
-  end
-  def update
-    @product=Product.find(params[:id])
 
+  def edit
+    #before action ile çalışıyor
+  end
+
+  def update
     if @product.update(product_params)
       redirect_to @product ,notice:"Ürün başarıyla güncellendi"
     else
       render :edit, status: :unprocessable_entity , notice:"Ürün güncellenirken bir hata oluştu"
     end
   end
-  def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
 
+  def destroy
+    @product.destroy
     redirect_to products_path, notice: "Ürün başarıyla silindi"
   end
 
 
   private
+    def set_product
+      @product=Product.find(params[:id])
+    end
+
     def product_params
       params.require(:product).permit(:name, :description, :price, :stock)
     end

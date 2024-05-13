@@ -1,4 +1,8 @@
 class CategoriesController < ApplicationController
+
+  before_action :set_category, only: %i[show edit update destroy]
+  #after_action methodu da yazabilirsin
+
   def show
     @category=Category.find(params[:id])
   end
@@ -22,11 +26,10 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category=Category.find(params[:id])
+
   end
 
   def update
-    @category=Category.find(params[:id])
     if @category.update(category_params)
       redirect_to @category, notice: "Kategori başarıyla güncellendi"
     else
@@ -35,13 +38,17 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category=Category.find(params[:id])
     @category.destroy
 
     redirect_to products_path, notice: "#{@category.name} adlı kategori başarıyla silindi"
   end
 
   private
+
+    def set_category
+      @category=Category.find(params[:id])
+    end
+
     def category_params
       params.require(:category).permit(:name)
     end
